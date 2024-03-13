@@ -196,4 +196,3 @@ jobs:
         #     IMAGE: ${{ vars.Dockerhub.repository_owner }}/solar-system:${{ github.sha }}
         #     INGRESS_IP: 
 
-
