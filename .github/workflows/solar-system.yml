@@ -171,7 +171,13 @@ jobs:
           with:
             version: 'v1.27.9'
 
-        - name: Fetch Kubernetes cluster details
+        - name: Kube login context - dev
+          uses: azure/k8s-set-context@v4
+          with:
+            method: kubeconfig
+            kubeconfig: ${{ secrets.KUBECONFIG }}
+
+        - name: Fetch Kubernetes cluster details - dev
           run: |
             kubectl version --short
             echo ----------------------------
