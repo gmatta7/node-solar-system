@@ -171,10 +171,10 @@ jobs:
           with:
             version: 'v1.27.9'
 
-        # - name: Fetch Kubernetes cluster details
-        #   run: |
-        #     kubectl version --short
-        #     echo ----------------------------
-        #     kubectl get nodes
+        - name: Fetch Kubernetes cluster details
+          run: |
+            kubectl version --short
+            echo ----------------------------
+            kubectl get nodes
 
 
