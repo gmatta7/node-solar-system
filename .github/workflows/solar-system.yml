@@ -14,22 +14,26 @@ env:
     
 jobs:
     unit-testing:
+
         services:
           mongo-db:
             image: ${{ vars.MONGO_IMAGE_NON_PROD }}
             ports:
               - 27017:27017
+
         env:
           MONGO_URI: 'mongodb://localhost:27017/superData'
           MONGO_USERNAME: ${{ vars.MONGO_USERNAME_NONPROD }}
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD_NONPROD }}
+
         strategy:
           matrix:
-            nodejs_version: [20]
+            nodejs_version: [20, 18]
             operating_system: [ubuntu-latest]
             exclude:
               - nodejs_version: 18
                 operating_system: macos-latest
+
         name: Unit Testing
         runs-on: ${{ matrix.operating_system }}
         steps:
@@ -175,7 +179,7 @@ jobs:
           uses: azure/k8s-set-context@v4
           with:
             method: kubeconfig
-            kubeconfig: ${{ secrets.KUBECONFIG_DEV }}
+            kubeconfig: ${{ secrets.KUBECONFIG }}
 
         - name: Fetch Kubernetes cluster details - dev
           run: |
@@ -217,6 +221,7 @@ jobs:
           run: |
             kubectl apply -f kubernetes/development
             
+
 
 
 
