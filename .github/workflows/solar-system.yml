@@ -216,6 +216,7 @@ jobs:
         - name: Deploy to Dev environment
           run: |
             kubectl apply -f kubernetes/development
+            
 
 
 
