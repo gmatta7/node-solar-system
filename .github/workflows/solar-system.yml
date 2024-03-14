@@ -186,7 +186,7 @@ jobs:
 
         - name: Fetch NGINX Ingress IP and export it as a GitHub environment variable
           run: |
-            echo "INGRESS_IP=$(kubectl -n app-routing-system get service nginx -o jsonpath="{.status.loadBalancer.ingress[0].ip}")" >> $GITHUB_ENV
+            echo "INGRESS_IP=$(kubectl -n app-routing-system get service nginx-public-0 -o jsonpath="{.status.loadBalancer.ingress[0].ip}")" >> $GITHUB_ENV
 
         - name: Replace tokens in manifest files
           uses: cschleiden/replace-tokens@v1
@@ -216,6 +216,6 @@ jobs:
         - name: Deploy to Dev environment
           run: |
             kubectl apply -f kubernetes/development
-            
+
 
 
